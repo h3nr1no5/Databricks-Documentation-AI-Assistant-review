@@ -29,10 +29,8 @@ env/
 # Data
 # -----------------------------
 data/raw/
-data/chunks/
 data/markdown/
 
-data/urls.json
 data/urls.txt
 
 # -----------------------------
