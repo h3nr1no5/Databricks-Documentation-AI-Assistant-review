@@ -1,0 +1,8 @@
+openai
+streamlit
+minsearch
+python-dotenv
+tqdm
+requests
+beautifulsoup4
+tiktoken
