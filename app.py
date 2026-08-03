@@ -28,7 +28,7 @@ if question:
 
         st.write(response["answer"])
 
-        with st.expander("📚 Sources"):
+        with st.expander("Sources"):
 
             for source in response["sources"]:
 
@@ -38,7 +38,7 @@ if question:
 
                 st.write(source["url"])
 
-        with st.expander("🔎 Retrieved Context"):
+        with st.expander("Retrieved Context"):
 
             for doc in response["retrieved_docs"]:
 
