@@ -1,6 +1,6 @@
 # 🚀 Databricks Documentation AI Assistant
 
-An enterprise-grade **Retrieval-Augmented Generation (RAG)** application that enables natural language interaction with the official Databricks documentation.
+A **Retrieval-Augmented Generation (RAG)** application that enables natural language interaction with the official Databricks documentation.
 
 The system automatically ingests documentation from the official Databricks website, builds a semantic knowledge base using OpenAI embeddings and vector search, and provides accurate, citation-backed responses through a conversational interface.
 
