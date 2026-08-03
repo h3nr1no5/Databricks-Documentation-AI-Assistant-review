@@ -1,2 +1,64 @@
+# -----------------------------
+# Python
+# -----------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtual Environment
+.venv/
+venv/
+env/
+
+# Environment Variables
 .env
-.venv
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# -----------------------------
+# Data
+# -----------------------------
+data/raw/
+data/chunks/
+data/markdown/
+
+data/urls.json
+data/urls.txt
+
+# -----------------------------
+# Vector Database
+# -----------------------------
+vector_db/
+
+# Chroma
+chroma.sqlite3
+
+# -----------------------------
+# Notebook checkpoints
+# -----------------------------
+.ipynb_checkpoints/
+
+# -----------------------------
+# Testing
+# -----------------------------
+.pytest_cache/
+
+# Coverage
+.coverage
+htmlcov/
+
+# Mypy
+.mypy_cache/
+
+# Ruff
+.ruff_cache/
