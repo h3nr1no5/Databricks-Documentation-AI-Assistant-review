@@ -9,9 +9,7 @@ from src.config import DOCS_DIR
 
 URLS = json.load(open(DOCS_DIR / "urls.json"))
 
-from src.config import CHUNKS_DIR
-
-OUTPUT = CHUNKS_DIR
+OUTPUT = DOCS_DIR
 OUTPUT.mkdir(parents=True, exist_ok=True)
 
 headers = {

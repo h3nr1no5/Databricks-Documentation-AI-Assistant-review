@@ -7,10 +7,10 @@ from tqdm import tqdm
 
 from pathlib import Path
 
-from src.config import CHUNKS_DIR, DATA_DIR
+from src.config import CHUNKS_DIR, DOCS_DIR
 
 OUTPUT = CHUNKS_DIR
-INPUT = DATA_DIR
+INPUT = DOCS_DIR
 
 OUTPUT.mkdir(parents=True, exist_ok=True)
 
@@ -39,6 +39,9 @@ def chunk_text(text):
 with open(OUTPUT_FILE, "w", encoding="utf8") as out:
 
     for file in tqdm(sorted(INPUT.glob("*.json"))):
+
+        if file.name == "urls.json":
+            continue
 
         with open(file, encoding="utf8") as f:
             doc = json.load(f)
