@@ -1,6 +1,5 @@
 import json
 
-import os
 import sys
 from pathlib import Path
 
@@ -11,7 +10,9 @@ from openai import OpenAI
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from src.config import DOCS_DIR, CHUNKS_DIR, EMBEDDING_MODEL
+from src.config import CHUNKS_DIR, EMBEDDING_MODEL
+
+BATCH_SIZE = 100
 
 client = OpenAI()
 
@@ -23,24 +24,26 @@ collection = db.get_or_create_collection(
 
 with open(CHUNKS_DIR / "chunks.jsonl", encoding="utf8") as f:
 
-    for line in tqdm(f):
+    docs = [json.loads(line) for line in f]
 
-        doc = json.loads(line)
+for i in tqdm(range(0, len(docs), BATCH_SIZE)):
 
-        embedding = client.embeddings.create(
-            model=EMBEDDING_MODEL,
-            input=doc["text"]
-        ).data[0].embedding
+    batch = docs[i : i + BATCH_SIZE]
 
-        collection.add(
-            ids=[doc["id"]],
-            embeddings=[embedding],
-            documents=[doc["text"]],
-            metadatas=[{
-                "title": doc["title"],
-                "url": doc["url"],
-                "chunk_id": doc["chunk_id"]
-            }]
-        )
+    response = client.embeddings.create(
+        model=EMBEDDING_MODEL,
+        input=[doc["text"] for doc in batch],
+    )
+
+    collection.upsert(
+        ids=[doc["id"] for doc in batch],
+        embeddings=[item.embedding for item in response.data],
+        documents=[doc["text"] for doc in batch],
+        metadatas=[{
+            "title": doc["title"],
+            "url": doc["url"],
+            "chunk_id": doc["chunk_id"]
+        } for doc in batch],
+    )
 
 print(collection.count())
