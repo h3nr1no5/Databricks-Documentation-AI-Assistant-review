@@ -2,8 +2,11 @@ import requests
 import xml.etree.ElementTree as ET
 from pathlib import Path
 import json
+import sys
 
 SITEMAP_URL = "https://docs.databricks.com/sitemap.xml"
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from src.config import DOCS_DIR
 

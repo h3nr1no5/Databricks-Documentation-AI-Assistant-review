@@ -2,11 +2,15 @@ import json
 
 import os
 import sys
+from pathlib import Path
 
 import chromadb
 from tqdm import tqdm
 
 from openai import OpenAI
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+
 from src.config import DOCS_DIR, CHUNKS_DIR, EMBEDDING_MODEL
 
 client = OpenAI()

@@ -1,11 +1,12 @@
 from pathlib import Path
 import json
+import sys
 import uuid
 
 import tiktoken
 from tqdm import tqdm
 
-from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from src.config import CHUNKS_DIR, DOCS_DIR
 
